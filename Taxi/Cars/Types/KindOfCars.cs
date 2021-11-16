@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Taxi.Cars.Types
 {
-    // TODO. Develop a type for private freight transport
-    class MovingVan : KindOfCars
+    public abstract class KindOfCars
     {
-        public override KindOfCars Type => this;
+        public abstract KindOfCars Type { get; }
     }
 }

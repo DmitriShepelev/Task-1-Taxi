@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taxi.Cars.Types
+namespace Taxi.Cars.Components.Engine
 {
-    class LightVehicle : KindOfCars
+  public abstract  class Engine
     {
-        public override KindOfCars Type =>  this;
+        public abstract Engine EngineType { get; protected set; }
     }
 }

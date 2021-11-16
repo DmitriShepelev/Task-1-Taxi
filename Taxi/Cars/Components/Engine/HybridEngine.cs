@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taxi.Cars.Types
+namespace Taxi.Cars.Components.Engine
 {
-    class LightVehicle : KindOfCars
+    class HybridEngine
     {
-        public override KindOfCars Type =>  this;
     }
 }

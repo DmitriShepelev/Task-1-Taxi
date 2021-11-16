@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Taxi.Cars.Types
 {
     // TODO. Develop a type for a route taxi
-    class MiniBus
+    class MiniBus : KindOfCars
     {
+        public override KindOfCars Type => this;
     }
 }
