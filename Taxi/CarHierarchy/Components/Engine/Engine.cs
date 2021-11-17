@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taxi.Cars.Components.Engine
+namespace Taxi.CarHierarchy.Components.Engine
 {
-    class DiselEngine
+  public abstract  class Engine
     {
+        public abstract Engine EngineType { get;}
     }
 }

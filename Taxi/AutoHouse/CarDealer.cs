@@ -9,12 +9,12 @@ namespace Taxi.AutoHouse
 {
     class CarDealer
     {
-        Constructor constructor;
-        public CarDealer(Constructor constructor)
-        {
-            this.constructor = constructor;
-        }
-        public void SellCar()
+        //CarConstructor constructor;
+        //public CarDealer(CarConstructor constructor)
+        //{
+        //    this.constructor = constructor;
+        //}
+        public void SellCar(CarConstructor constructor)
         {
             constructor.ChooseEngine();
             constructor.ChooseBody();

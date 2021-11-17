@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Taxi.Cars.Components.Body;
-using Taxi.Cars.Components.Engine;
-using Taxi.Cars.Components.Equipment;
-using Taxi.Cars.Types;
+using Taxi.CarHierarchy.Components.Body;
+using Taxi.CarHierarchy.Components.Engine;
+using Taxi.CarHierarchy.Components.Equipment;
+using Taxi.CarHierarchy.Types;
 
-namespace Taxi.Cars
+namespace Taxi.CarHierarchy
 {
     public class Car
     {
@@ -22,7 +22,10 @@ namespace Taxi.Cars
         public Engine Engine { get; internal set; }
         public Equipment Equipment { get; internal set; }
 
-
+        public override string ToString()
+        {
+            return $"Make And Model = {MakeAndModel}, {Body}, {Engine}, {Equipment}, Fuel Consumption = {FuelConsumption}, Cost = {Cost}$";
+        }
         //public CarEntity(KindOfCars kindOfCars, decimal cost, int fuelConsumption)
         //{
         //    KindOfCars = kindOfCars;

@@ -11,19 +11,19 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
-    class LadaVesta : CarConstructor
+    class MazdaCX7 : CarConstructor
     {
-        Car instance = new() { MakeAndModel = "Lada Vesta", KindOfCars = new LightVehicle(),};
+        Car instance = new() { MakeAndModel = "Mazda CX-7", KindOfCars = new LightVehicle(), };
 
-        public override void ChooseBody() => instance.Body = new Sedan();
+        public override void ChooseBody() => instance.Body = new Crossover();
 
         public override void ChooseEngine() => instance.Engine = new GasEngine();
 
-        public override void ChooseEquipment() => instance.Equipment = new BasicEquipment();
+        public override void ChooseEquipment() => instance.Equipment = new DeluxeEquipment();
 
-        public override void Cost() => instance.Cost = 11000;
+        public override void Cost() => instance.Cost = 20000;
 
-        public override void FuelConsumption() => instance.FuelConsumption = 8.5f;
+        public override void FuelConsumption() => instance.FuelConsumption = 15f;
 
         public override Car GetCar() => instance;
     }

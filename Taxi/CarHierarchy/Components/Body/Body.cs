@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taxi.Cars.Types
+namespace Taxi.CarHierarchy.Components.Body
 {
-    class LightVehicle : KindOfCars
+    public abstract class Body
     {
-        public override KindOfCars Type =>  this;
+        public abstract Body Type { get; }
+
     }
 }

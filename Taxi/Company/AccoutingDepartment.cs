@@ -8,5 +8,15 @@ namespace Taxi.Company
 {
     class AccoutingDepartment
     {
+        private VehicleFleet instance;
+        public AccoutingDepartment()
+        {
+            instance = VehicleFleet.Instance;
+        }
+
+        public decimal TotalCostOfFleet()
+        {
+            return instance.Cars.Sum(x => x.Cost);
+        }
     }
 }

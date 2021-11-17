@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Taxi.Cars;
+using Taxi.CarHierarchy;
 
 namespace Taxi.AutoHouse
 {
-    public abstract class Constructor
+    public abstract class CarConstructor
     {
         public abstract void ChooseEngine();
         public abstract void ChooseBody();

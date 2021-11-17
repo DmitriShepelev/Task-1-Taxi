@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taxi.Cars.Components.Equipment
+namespace Taxi.CarHierarchy.Components.Equipment
 {
     public abstract class Equipment
     {

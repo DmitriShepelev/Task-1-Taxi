@@ -4,12 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Taxi.Cars;
-using Taxi.Cars.Components.Body;
+using Taxi.CarHierarchy;
+using Taxi.CarHierarchy.Components.Body;
 
 namespace Taxi.AutoHouse
 {
-    class LightVehicleConstructor : Constructor
+    class ManualConstructor : CarConstructor
     {
         Car instance = new Car();
         public override void ChooseBody()

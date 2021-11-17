@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Taxi.Cars.Types
+namespace Taxi.CarHierarchy.Types
 {
     // TODO. Develop a type for a route taxi
     class MiniBus : KindOfCars
