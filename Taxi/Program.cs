@@ -7,6 +7,7 @@ using Taxi.CarHierarchy.Components.Engine;
 using Taxi.CarHierarchy.Components.Equipment;
 using Taxi.CarHierarchy.Types;
 using Taxi.Company;
+using Taxi.Menus;
 
 namespace Taxi
 {
@@ -14,37 +15,57 @@ namespace Taxi
     {
         static void Main(string[] args)
         {
-            var bestsellers = new List<CarConstructor>()
+            Console.WriteLine("Welcome to the Taxi program!\nPlease select the first vehicle for your fleet:");
+            bool menu = true;
+            while (menu)
             {
-                new LadaVesta(),
-                new VolkswagenPassat(),
-                new MazdaCX7()
-            };
+                menu = CarPurchaseMenu.AddCar();
+            }
+
+            menu = true;
+            while (menu)
+            {
+                menu = MainMenu.Menu();
+            }
+
+            //var bestsellers = new List<PassengerCarBuilder>()
+            //{
+            //    new LadaVestaBuilder(),
+            //    new VolkswagenPassatBuilder(),
+            //    new MazdaCX7Builder()
+            //};
 
             //var constructor = new ManualConstructor();
-            //var ladaVesta = new LadaVesta();
-            //var polo = new VolkswagenPassat();
-            //var mazdaCX = new MazdaCX7();
 
-            CarDealer dealer = new();
-            foreach (var offer in bestsellers)
-            {
-                dealer.SellCar(offer);
-            }
+            //AutoHouseDealer dealer = new();
 
-            var instance = VehicleFleet.Instance;
-            instance.ShowFleetToConsole();
+            //foreach (var offer in bestsellers)
+            //{
+            //    AutoHouseDealer dealer = new AutoHouseDealer(offer);
+            //    dealer.ShowCar();
+            //}
 
-            var accountant = new AccoutingDepartment();
-            Console.WriteLine($"\nTotal cost of the vehicle fleet = {accountant.TotalCostOfFleet()}$\n");
+            //foreach (var offer in bestsellers)
+            //{
+            //    AutoHouseDealer dealer = new AutoHouseDealer(offer);
+            //    dealer.SellCar();
+            //}
 
-            var orderedFleet = instance.SortByConsumption();
-            Console.Write("Sorting by fuel consumption = \t");
-            foreach (var car in orderedFleet)
-            {
-                Console.Write($"{car.FuelConsumption} ");
-            }
-            Console.WriteLine();
+            //var instance = VehicleFleet.Instance;
+            ////instance.ShowFleetToConsole();
+
+            //var accountant = new AccoutingDepartment();
+            //Console.WriteLine($"\nTotal cost of the vehicle fleet = {accountant.GetTotalCostOfFleet()}$\n");
+
+            //var orderedFleet = instance.SortByConsumption();
+            //Console.Write("Sorting by fuel consumption = \t");
+            //foreach (var car in orderedFleet)
+            //{
+            //    Console.Write($"{car.FuelConsumption} ");
+            //}
+            //Console.WriteLine();
+
+
         }
     }
 }

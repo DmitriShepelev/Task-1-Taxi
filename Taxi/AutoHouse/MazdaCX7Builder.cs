@@ -11,7 +11,7 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
-    class MazdaCX7 : CarConstructor
+    class MazdaCX7Builder : PassengerCarBuilder
     {
         Car instance = new() { MakeAndModel = "Mazda CX-7", KindOfCars = new LightVehicle(), };
 
@@ -21,7 +21,8 @@ namespace Taxi.AutoHouse
 
         public override void ChooseEquipment() => instance.Equipment = new DeluxeEquipment();
 
-        public override void Cost() => instance.Cost = 20000;
+        public override void SetCost() => instance.Cost = 20000;
+        public override void SetTopSpeed() => instance.TopSpeed = 200;
 
         public override void FuelConsumption() => instance.FuelConsumption = 15f;
 

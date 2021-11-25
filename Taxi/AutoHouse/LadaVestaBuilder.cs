@@ -11,9 +11,9 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
-    class LadaVesta : CarConstructor
+    class LadaVestaBuilder : PassengerCarBuilder
     {
-        Car instance = new() { MakeAndModel = "Lada Vesta", KindOfCars = new LightVehicle(),};
+        Car instance = new() { MakeAndModel = "Lada Vesta", KindOfCars = new LightVehicle(), };
 
         public override void ChooseBody() => instance.Body = new Sedan();
 
@@ -21,10 +21,14 @@ namespace Taxi.AutoHouse
 
         public override void ChooseEquipment() => instance.Equipment = new BasicEquipment();
 
-        public override void Cost() => instance.Cost = 11000;
-
+        public override void SetCost() => instance.Cost = 11000;
+        public override void SetTopSpeed() => instance.TopSpeed = 180;
         public override void FuelConsumption() => instance.FuelConsumption = 8.5f;
 
         public override Car GetCar() => instance;
+        public override string ToString()
+        {
+            return instance.ToString();
+        }
     }
 }

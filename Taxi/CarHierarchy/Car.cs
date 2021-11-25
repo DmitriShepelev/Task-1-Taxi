@@ -12,25 +12,65 @@ namespace Taxi.CarHierarchy
 {
     public class Car
     {
-        public int Id { get; }
-        public decimal Cost { get; set; }
-        public float FuelConsumption { get; set; }
+        private decimal cost;
+        private float fuelConsumption;
+        private int topSpeed;
 
-        public KindOfCars KindOfCars { get; internal set; }
-        public string MakeAndModel { get; internal set; }
-        public Body Body { get; internal set; }
-        public Engine Engine { get; internal set; }
-        public Equipment Equipment { get; internal set; }
+        internal decimal Cost
+        {
+            get => cost;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Cost cannot be less than zero.");
+                }
+                else
+                {
+                    cost = value;
+                }
+            }
+        }
+        internal float FuelConsumption
+        {
+            get => fuelConsumption;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Fuel consumption cannot be equal to or less than zero.");
+                }
+                else
+                {
+                    fuelConsumption = value;
+                }
+            }
+        }
+        internal int TopSpeed
+        {
+            get => topSpeed;
+            set
+            {
+                if (value <= 0 && value > 350)
+                {
+                    throw new ArgumentException("The maximum vehicle speed cannot be zero or exceed 350 km / h.");
+                }
+                else
+                {
+                    topSpeed = value;
+                }
+            }
+        }
+
+        internal KindOfCars KindOfCars { get; set; }
+        internal string MakeAndModel { get; set; }
+        internal Body Body { get;  set; }
+        internal Engine Engine { get; set; }
+        internal Equipment Equipment { get; set; }
 
         public override string ToString()
         {
-            return $"Make And Model = {MakeAndModel}, {Body}, {Engine}, {Equipment}, Fuel Consumption = {FuelConsumption}, Cost = {Cost}$";
+            return $"{MakeAndModel}, {Body}, {Engine}, {Equipment}, Fuel Consumption = {FuelConsumption}, Cost = {Cost}, Top speed = {TopSpeed}";
         }
-        //public CarEntity(KindOfCars kindOfCars, decimal cost, int fuelConsumption)
-        //{
-        //    KindOfCars = kindOfCars;
-        //    Cost = cost;
-        //    FuelConsumption = fuelConsumption;
-        //}
     }
 }

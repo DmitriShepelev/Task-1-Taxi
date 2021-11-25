@@ -9,7 +9,7 @@ using Taxi.CarHierarchy.Components.Body;
 
 namespace Taxi.AutoHouse
 {
-    class ManualConstructor : CarConstructor
+    class ManualPassengerCarBuilder : PassengerCarBuilder
     {
         Car instance = new Car();
         public override void ChooseBody()
@@ -47,7 +47,7 @@ namespace Taxi.AutoHouse
             fuelConsumption = Convert.ToSingle(Console.ReadLine(), CultureInfo.InvariantCulture);
             instance.FuelConsumption = fuelConsumption;
         }
-        public override void Cost()
+        public override void SetCost()
         {
             Console.WriteLine("Укажите цену");
             decimal cost;
@@ -59,6 +59,11 @@ namespace Taxi.AutoHouse
         public override Car GetCar()
         {
             return instance;
+        }
+
+        public override void SetTopSpeed()
+        {
+            throw new NotImplementedException();
         }
     }
 }

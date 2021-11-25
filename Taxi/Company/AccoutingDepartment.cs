@@ -14,7 +14,7 @@ namespace Taxi.Company
             instance = VehicleFleet.Instance;
         }
 
-        public decimal TotalCostOfFleet()
+        public decimal GetTotalCostOfFleet()
         {
             return instance.Cars.Sum(x => x.Cost);
         }

@@ -11,9 +11,9 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
-    class VolkswagenPassat : CarConstructor
+    class VolkswagenPassatBuilder : PassengerCarBuilder
     {
-        Car instance = new() { MakeAndModel = " Volkswagen Passat", KindOfCars = new LightVehicle(), };
+        Car instance = new() { MakeAndModel = "Volkswagen Passat", KindOfCars = new LightVehicle(), };
 
         public override void ChooseBody() => instance.Body = new StationWagon();
 
@@ -21,10 +21,13 @@ namespace Taxi.AutoHouse
 
         public override void ChooseEquipment() => instance.Equipment = new MediumEquipment();
 
-        public override void Cost() => instance.Cost = 15000;
+        public override void SetCost() => instance.Cost = 15000;
+
+        public override void SetTopSpeed() => instance.TopSpeed = 190;
 
         public override void FuelConsumption() => instance.FuelConsumption = 6.5f;
 
         public override Car GetCar() => instance;
+
     }
 }
