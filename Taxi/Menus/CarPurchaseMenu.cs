@@ -9,25 +9,19 @@ namespace Taxi.Menus
 {
     class CarPurchaseMenu
     {
-        internal static bool AddCar()
+        internal static bool AddCar(List<PassengerCarBuilder> bestOffers)
         {
-            var bestsellers = new List<PassengerCarBuilder>()
-            {
-                new LadaVestaBuilder(),
-                new VolkswagenPassatBuilder(),
-                new MazdaCX7Builder()
-            };
-
             int positionNumber = 1;
-            foreach (var offer in bestsellers)
+            foreach (var offer in bestOffers)
             {
                 Console.Write($"{positionNumber}. ");
                 AutoHouseDealer dealer = new AutoHouseDealer(offer);
                 dealer.ShowCar();
                 positionNumber++;
             }
-            Console.WriteLine("4 - Cancel.");
+            Console.WriteLine("4. Cancel.");
 
+            Console.WriteLine("Enter the selected car number: ");
             int input;
 
             if (int.TryParse(Console.ReadLine(), out input) && input > 0 && input < 5)
@@ -35,16 +29,16 @@ namespace Taxi.Menus
                 switch (input)
                 {
                     case 1:
-                        new AutoHouseDealer(bestsellers[0]).SellCar();
-                        Console.WriteLine("Vehicle added successfully");
+                        new AutoHouseDealer(bestOffers[0]).SellCar();
+                        Return();
                         return false;
                     case 2:
-                        new AutoHouseDealer(bestsellers[1]).SellCar();
-                        Console.WriteLine("Vehicle added successfully");
+                        new AutoHouseDealer(bestOffers[1]).SellCar();
+                        Return();
                         return false;
                     case 3:
-                        new AutoHouseDealer(bestsellers[2]).SellCar();
-                        Console.WriteLine("Vehicle added successfully");
+                        new AutoHouseDealer(bestOffers[2]).SellCar();
+                        Return();
                         return false;
                     case 4:
                         return false;
@@ -53,11 +47,21 @@ namespace Taxi.Menus
             }
             else
             {
-                Console.WriteLine("Invalid input. try again");
-                AddCar();
+                Console.WriteLine("\nInvalid input. try again\n");
+                AddCar(bestOffers);
                 return false;
             }
 
+        }
+
+        private static void Return()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine($"\nVehicle added successfully\n");
+            Console.ResetColor();
+            Console.WriteLine("Press any key to return to the menu");
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }

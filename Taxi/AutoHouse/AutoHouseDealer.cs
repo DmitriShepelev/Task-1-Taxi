@@ -26,7 +26,7 @@ namespace Taxi.AutoHouse
         }
         public void ShowCar()
         {
-            Console.WriteLine(carForSale);
+            Console.WriteLine(carForSale.MakeAndModel);
         }
 
         public void SellCar()

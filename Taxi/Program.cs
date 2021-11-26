@@ -15,17 +15,29 @@ namespace Taxi
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the Taxi program!\nPlease select the first vehicle for your fleet:");
+            Console.WriteLine("Welcome to the Taxi program!\n\nPlease select the first vehicle for your fleet:");
+
+            var bestOffers = new List<PassengerCarBuilder>()
+            {
+                new LadaVestaBuilder(),
+                new VolkswagenPassatBuilder(),
+                new MazdaCX7Builder()
+            };
+            
+
             bool menu = true;
             while (menu)
             {
-                menu = CarPurchaseMenu.AddCar();
+                menu = CarPurchaseMenu.AddCar(bestOffers);
             }
+
+            Console.WriteLine("The following options are available to you. ");
+            
 
             menu = true;
             while (menu)
             {
-                menu = MainMenu.Menu();
+                menu = MainMenu.Menu(bestOffers);
             }
 
             //var bestsellers = new List<PassengerCarBuilder>()
@@ -64,7 +76,6 @@ namespace Taxi
             //    Console.Write($"{car.FuelConsumption} ");
             //}
             //Console.WriteLine();
-
 
         }
     }
