@@ -11,7 +11,7 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
-    public abstract class PassengerCarBuilder
+    public abstract class Builder
     {
         public abstract void MakeAndModel(string makeAndModel);
         public abstract void KindOfCars(KindOfCars kindOfCars);

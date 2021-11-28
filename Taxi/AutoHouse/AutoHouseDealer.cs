@@ -10,10 +10,10 @@ namespace Taxi.AutoHouse
 {
     internal class AutoHouseDealer
     {
-        private PassengerCarBuilder builder;
+        private Builder builder;
         private readonly IVehicleFleet vehicleFleet;
 
-        public AutoHouseDealer(PassengerCarBuilder builder, IVehicleFleet vehicleFleet)
+        public AutoHouseDealer(Builder builder, IVehicleFleet vehicleFleet)
         {
             this.vehicleFleet = vehicleFleet;
             this.builder = builder;

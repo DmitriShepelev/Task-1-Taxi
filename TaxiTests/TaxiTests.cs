@@ -11,6 +11,6 @@ namespace Taxi.Tests
     [TestFixture]
     public class Tests
     {
-       
+
     }
 }

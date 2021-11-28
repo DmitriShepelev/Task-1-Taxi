@@ -11,7 +11,7 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
-    class CarBuilder : PassengerCarBuilder
+    public class CarBuilder : Builder
     {
         readonly Car instance = new();
         public override void MakeAndModel(string makeAndModel) => instance.MakeAndModel = makeAndModel;
@@ -30,6 +30,6 @@ namespace Taxi.AutoHouse
 
         public override Car GetCar() => instance;
         public override string ToString() => instance.ToString();
-        
+
     }
 }
