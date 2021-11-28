@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taxi.CarHierarchy.Components.Body
 {
-    class Crossover : Body
+    public class Crossover : Body
     {
         public override Body Type => this;
         public override string ToString()

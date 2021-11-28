@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taxi.CarHierarchy.Components.Body
 {
-    class Sedan : Body
+    public class Sedan : Body
     {
         public override Body Type => this;
         public override string ToString()

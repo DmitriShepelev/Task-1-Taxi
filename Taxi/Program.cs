@@ -46,8 +46,6 @@ namespace Taxi
                 menu = MainMenu.Menu(bestOffers, vehicleFleet);
             }
 
-
-            Console.WriteLine(dealer.ConstructCar(new GasEngine(), "Kia Rio", 210, 8, new Sedan(), new DeluxeEquipment(), new LightVehicle(), 18000));
         }
     }
 }

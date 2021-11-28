@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Taxi.CarHierarchy.Types
 {
-    class LightVehicle : KindOfCars
+    public class LightVehicle : KindOfCars
     {
-        public override KindOfCars Type =>  this;
+        public override KindOfCars Type => this;
     }
 }

@@ -11,7 +11,7 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.Interfaces
 {
-    interface IAutoHouse
+    public interface IAutoHouse
     {
         Car ConstructCar(Engine engine, string makeAndModel, int topSpeed, float fuelConsumption, Body body, Equipment equipment, KindOfCars kindOfCars, decimal cost);
         void SellCar();

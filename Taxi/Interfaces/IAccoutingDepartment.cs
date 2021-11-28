@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taxi.Interfaces
 {
-    interface IAccoutingDepartment
+    public interface IAccoutingDepartment
     {
         decimal GetTotalCostOfFleet();
     }

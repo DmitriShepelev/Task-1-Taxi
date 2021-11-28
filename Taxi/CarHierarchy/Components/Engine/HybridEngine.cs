@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taxi.CarHierarchy.Components.Engine
 {
-    class HybridEngine : Engine
+    public class HybridEngine : Engine
     {
         public override Engine EngineType => this;
     }

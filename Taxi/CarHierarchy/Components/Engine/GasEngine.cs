@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taxi.CarHierarchy.Components.Engine
 {
-    class GasEngine : Engine
+    public class GasEngine : Engine
     {
         public override Engine EngineType => this;
         public override string ToString()

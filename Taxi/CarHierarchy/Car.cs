@@ -13,9 +13,14 @@ namespace Taxi.CarHierarchy
     public class Car
     {
         private KindOfCars kindOfCars;
+        private Body body;
+        private Engine engine;
+        private Equipment equipment;
+        private string makeAndModel;
         private decimal cost;
         private float fuelConsumption;
         private int topSpeed;
+        private Body body1;
 
         public decimal Cost
         {
@@ -52,7 +57,7 @@ namespace Taxi.CarHierarchy
             get => topSpeed;
             internal set
             {
-                if (value <= 0 && value > 350)
+                if (value <= 0 || value > 350)
                 {
                     throw new ArgumentException("The maximum vehicle speed cannot be zero or exceed 350 km / h.");
                 }
@@ -65,24 +70,38 @@ namespace Taxi.CarHierarchy
 
         public KindOfCars KindOfCars
         {
-            get
-            {
-                if (kindOfCars == null)
-                {
-                    throw new ArgumentNullException("KindOfCars is null.");
-                }
-                return kindOfCars;
-            }
+            get => kindOfCars;
+            internal set => kindOfCars = value ?? throw new ArgumentNullException(nameof(KindOfCars));
+        }
+
+        public string MakeAndModel
+        {
+            get => makeAndModel;
             internal set
             {
-                kindOfCars = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentNullException(nameof(MakeAndModel));
+                }
+                makeAndModel = value;
             }
         }
 
-        public string MakeAndModel { get; internal set; }
-        public Body Body { get; internal set; }
-        public Engine Engine { get; internal set; }
-        public Equipment Equipment { get; internal set; }
+        public Body Body
+        {
+            get => body;
+            internal set => body = value ?? throw new ArgumentNullException(nameof(Body));
+        }
+        public Engine Engine 
+        { 
+            get => engine; 
+            internal set => engine = value ?? throw new ArgumentNullException(nameof(Engine)); 
+        }
+        public Equipment Equipment 
+        { 
+            get => equipment; 
+            internal set => equipment = value ?? throw new ArgumentNullException(nameof(Equipment));
+        }
 
         public override string ToString()
         {

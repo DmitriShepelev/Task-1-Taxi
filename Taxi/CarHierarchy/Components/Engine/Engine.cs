@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Taxi.CarHierarchy.Components.Engine
 {
-  public abstract  class Engine
+    public abstract class Engine
     {
-        public abstract Engine EngineType { get;}
+        public abstract Engine EngineType { get; }
     }
 }

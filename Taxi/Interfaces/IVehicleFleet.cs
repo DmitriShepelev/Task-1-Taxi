@@ -7,7 +7,7 @@ using Taxi.CarHierarchy;
 
 namespace Taxi.Interfaces
 {
-    interface IVehicleFleet
+    public interface IVehicleFleet
     {
         ICollection<Car> Cars { get; }
 

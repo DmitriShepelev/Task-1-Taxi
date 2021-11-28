@@ -8,7 +8,7 @@ using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
-    internal class AutoHouseDealer
+    public class AutoHouseDealer
     {
         private Builder builder;
         private readonly IVehicleFleet vehicleFleet;

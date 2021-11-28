@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Taxi.CarHierarchy.Components.Equipment
 {
-    class MediumEquipment : Equipment
+    public class MediumEquipment : Equipment
     {
         public override Equipment EquipmentType => this;
         public override string ToString()
