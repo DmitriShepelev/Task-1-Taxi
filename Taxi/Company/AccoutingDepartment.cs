@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Taxi.Interfaces;
 
 namespace Taxi.Company
 {
-    class AccoutingDepartment
+    class AccoutingDepartment : IAccoutingDepartment
     {
-        private VehicleFleet instance;
-        public AccoutingDepartment()
+        private VehicleFleet vehicleFleet;
+        public AccoutingDepartment(VehicleFleet vehicleFleet)
         {
-            instance = VehicleFleet.Instance;
+            this.vehicleFleet = vehicleFleet;
         }
 
         public decimal GetTotalCostOfFleet()
         {
-            return instance.Cars.Sum(x => x.Cost);
+            return vehicleFleet.Cars.Sum(x => x.Cost);
         }
     }
 }

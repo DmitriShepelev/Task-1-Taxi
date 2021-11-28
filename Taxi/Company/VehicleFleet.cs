@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Taxi.CarHierarchy;
+using Taxi.Interfaces;
 
 namespace Taxi.Company
 {
-    public class VehicleFleet
+    public class VehicleFleet : IVehicleFleet
     {
-        static Lazy<VehicleFleet> instance = new Lazy<VehicleFleet>();
         private readonly List<Car> carEntityList = new();
-        public static VehicleFleet Instance { get => instance.Value; }
         internal ICollection<Car> Cars => carEntityList;
+        internal VehicleFleet GetFleet { get => this; }
+
         public void Add(Car carEntity)
         {
             carEntityList.Add(carEntity);
@@ -26,7 +27,7 @@ namespace Taxi.Company
         {
             var lineNumber = 1;
             foreach (var item in carEntityList)
-            {                
+            {
                 Console.WriteLine(lineNumber + " " + item + "\n");
                 lineNumber++;
             }
@@ -34,7 +35,7 @@ namespace Taxi.Company
 
         public IEnumerable<Car> FindCarBySpeedRange(int startRange, int endRange)
         {
-            return carEntityList.Where(car => car.TopSpeed >= startRange && endRange <= car.TopSpeed).ToList();
+            return carEntityList.Where(car => car.TopSpeed >= startRange && car.TopSpeed <= endRange).ToList();
         }
     }
 }

@@ -12,8 +12,11 @@ namespace Taxi.AutoHouse
     {
         private readonly PassengerCarBuilder _builder;
         private readonly Car carForSale;
-        public AutoHouseDealer(PassengerCarBuilder builder)
+        private readonly VehicleFleet vehicleFleet;
+
+        public AutoHouseDealer(PassengerCarBuilder builder, VehicleFleet vehicleFleet)
         {
+            this.vehicleFleet = vehicleFleet;
             _builder = builder;
             _builder.ChooseEngine();
             _builder.ChooseBody();
@@ -31,9 +34,7 @@ namespace Taxi.AutoHouse
 
         public void SellCar()
         {
-            // The VehicleFleet class implements the Singleton pattern.
-            var fleetInstance = VehicleFleet.Instance;
-            fleetInstance.Add(carForSale);
+            vehicleFleet.Add(carForSale);
         }
     }
 }

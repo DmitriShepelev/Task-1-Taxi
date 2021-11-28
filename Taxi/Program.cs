@@ -15,6 +15,7 @@ namespace Taxi
     {
         static void Main(string[] args)
         {
+            VehicleFleet vehicleFleet = new();
             Console.WriteLine("Welcome to the Taxi program!\n\nPlease select the first vehicle for your fleet:");
 
             var bestOffers = new List<PassengerCarBuilder>()
@@ -28,7 +29,7 @@ namespace Taxi
             bool menu = true;
             while (menu)
             {
-                menu = CarPurchaseMenu.AddCar(bestOffers);
+                menu = CarPurchaseMenu.AddCar(bestOffers, vehicleFleet);
             }
 
             Console.WriteLine("The following options are available to you. ");
@@ -37,46 +38,8 @@ namespace Taxi
             menu = true;
             while (menu)
             {
-                menu = MainMenu.Menu(bestOffers);
+                menu = MainMenu.Menu(bestOffers, vehicleFleet);
             }
-
-            //var bestsellers = new List<PassengerCarBuilder>()
-            //{
-            //    new LadaVestaBuilder(),
-            //    new VolkswagenPassatBuilder(),
-            //    new MazdaCX7Builder()
-            //};
-
-            //var constructor = new ManualConstructor();
-
-            //AutoHouseDealer dealer = new();
-
-            //foreach (var offer in bestsellers)
-            //{
-            //    AutoHouseDealer dealer = new AutoHouseDealer(offer);
-            //    dealer.ShowCar();
-            //}
-
-            //foreach (var offer in bestsellers)
-            //{
-            //    AutoHouseDealer dealer = new AutoHouseDealer(offer);
-            //    dealer.SellCar();
-            //}
-
-            //var instance = VehicleFleet.Instance;
-            ////instance.ShowFleetToConsole();
-
-            //var accountant = new AccoutingDepartment();
-            //Console.WriteLine($"\nTotal cost of the vehicle fleet = {accountant.GetTotalCostOfFleet()}$\n");
-
-            //var orderedFleet = instance.SortByConsumption();
-            //Console.Write("Sorting by fuel consumption = \t");
-            //foreach (var car in orderedFleet)
-            //{
-            //    Console.Write($"{car.FuelConsumption} ");
-            //}
-            //Console.WriteLine();
-
         }
     }
 }

@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Taxi.AutoHouse;
+using Taxi.Company;
 
 namespace Taxi.Menus
 {
     class CarPurchaseMenu
     {
-        internal static bool AddCar(List<PassengerCarBuilder> bestOffers)
+        internal static bool AddCar(List<PassengerCarBuilder> bestOffers, VehicleFleet vehicleFleet)
         {
             int positionNumber = 1;
             foreach (var offer in bestOffers)
             {
                 Console.Write($"{positionNumber}. ");
-                AutoHouseDealer dealer = new AutoHouseDealer(offer);
+                AutoHouseDealer dealer = new AutoHouseDealer(offer, vehicleFleet);
                 dealer.ShowCar();
                 positionNumber++;
             }
@@ -29,15 +30,15 @@ namespace Taxi.Menus
                 switch (input)
                 {
                     case 1:
-                        new AutoHouseDealer(bestOffers[0]).SellCar();
+                        new AutoHouseDealer(bestOffers[0], vehicleFleet).SellCar();
                         Return();
                         return false;
                     case 2:
-                        new AutoHouseDealer(bestOffers[1]).SellCar();
+                        new AutoHouseDealer(bestOffers[1], vehicleFleet).SellCar();
                         Return();
                         return false;
                     case 3:
-                        new AutoHouseDealer(bestOffers[2]).SellCar();
+                        new AutoHouseDealer(bestOffers[2], vehicleFleet).SellCar();
                         Return();
                         return false;
                     case 4:
@@ -48,8 +49,8 @@ namespace Taxi.Menus
             else
             {
                 Console.WriteLine("\nInvalid input. try again\n");
-                AddCar(bestOffers);
-                return false;
+                AddCar(bestOffers, vehicleFleet);
+                return true;
             }
 
         }

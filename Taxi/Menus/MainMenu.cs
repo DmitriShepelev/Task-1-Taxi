@@ -10,7 +10,7 @@ namespace Taxi.Menus
 {
     class MainMenu
     {
-        internal static bool Menu(List<PassengerCarBuilder> bestOffers)
+        internal static bool Menu(List<PassengerCarBuilder> bestOffers, VehicleFleet vehicleFleet)
         {
             Console.WriteLine("1. Add a car to the fleet");
             Console.WriteLine("2. Display vehicle fleet to console");
@@ -26,20 +26,20 @@ namespace Taxi.Menus
                 {
                     case 1:
                         Console.Clear();
-                        CarPurchaseMenu.AddCar(bestOffers);
+                        CarPurchaseMenu.AddCar(bestOffers, vehicleFleet);
                         return true;
                     case 2:
                         Console.WriteLine();
-                        VehicleFleet.Instance.ShowFleetToConsole();
+                        vehicleFleet.ShowFleetToConsole();
                         DelayAndReturn();
                         return true;
                     case 3:
-                        var accountant = new AccoutingDepartment();
+                        var accountant = new AccoutingDepartment(vehicleFleet);
                         Console.WriteLine($"\nTotal cost of the vehicle fleet = {accountant.GetTotalCostOfFleet()}$\n");
                         DelayAndReturn();
                         return true;
                     case 4:
-                        var orderedFleet = VehicleFleet.Instance.SortByConsumption();
+                        var orderedFleet = vehicleFleet.SortByConsumption();
                         Console.Write("Sorting by fuel consumption = \t");
                         foreach (var car in orderedFleet)
                         {
@@ -48,7 +48,7 @@ namespace Taxi.Menus
                         DelayAndReturn();
                         return true;
                     case 5:
-                        ShowCarBySpeedRange();
+                        ShowCarBySpeedRange(vehicleFleet);
                         DelayAndReturn();
                         return true;
                     case 6:
@@ -60,29 +60,39 @@ namespace Taxi.Menus
             else
             {
                 Console.WriteLine("\nInvalid input. try again\n");
-                Menu(bestOffers);
-                return false;
+                Menu(bestOffers, vehicleFleet);
+                return true;
             }
         }
-        private static void ShowCarBySpeedRange()
+        private static void ShowCarBySpeedRange(VehicleFleet vehicleFleet)
         {
             Console.WriteLine("Enter the start value of the range:");
             int startValue, endValue;
-            if (int.TryParse(Console.ReadLine(), out startValue) &&
-                int.TryParse(Console.ReadLine(), out endValue) &&
-                startValue <= endValue &&
-                startValue > 0)
+            if (int.TryParse(Console.ReadLine(), out startValue))
             {
-                var resultList = VehicleFleet.Instance.FindCarBySpeedRange(startValue, endValue);
-                foreach (var car in resultList)
+                Console.WriteLine("Enter the end value of the range:");
+                if (int.TryParse(Console.ReadLine(), out endValue))
                 {
-                    Console.WriteLine(car);
+                    if (startValue <= endValue && startValue > 0)
+                    {
+                        var resultList = vehicleFleet.FindCarBySpeedRange(startValue, endValue);
+                        foreach (var car in resultList)
+                        {
+                            Console.WriteLine(car);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nStart value cannot be less than zero and start value cannot be greater than end value\nTry again!\n");
+                        ShowCarBySpeedRange(vehicleFleet);
+
+                    }
                 }
             }
             else
             {
-                Console.WriteLine("Invalid input. try again");
-                ShowCarBySpeedRange();
+                Console.WriteLine("Invalid input. Try again");
+                ShowCarBySpeedRange(vehicleFleet);
             }
         }
 
