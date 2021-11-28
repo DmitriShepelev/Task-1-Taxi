@@ -13,19 +13,25 @@ namespace Taxi.AutoHouse
 {
     class MazdaCX7Builder : PassengerCarBuilder
     {
-        Car instance = new() { MakeAndModel = "Mazda CX-7", KindOfCars = new LightVehicle(), };
+        readonly Car instance = new();
+        public override void MakeAndModel(string makeAndModel) => instance.MakeAndModel = "Mazda CX-7";
 
-        public override void ChooseBody() => instance.Body = new Crossover();
+        public override void KindOfCars(KindOfCars kindOfCars) => instance.KindOfCars = new LightVehicle();
 
-        public override void ChooseEngine() => instance.Engine = new GasEngine();
+        public override void ChooseBody(Body body) => instance.Body = new Crossover();
 
-        public override void ChooseEquipment() => instance.Equipment = new DeluxeEquipment();
+        public override void ChooseEngine(Engine engine) => instance.Engine = new GasEngine();
 
-        public override void SetCost() => instance.Cost = 20000;
-        public override void SetTopSpeed() => instance.TopSpeed = 200;
+        public override void ChooseEquipment(Equipment equipment) => instance.Equipment = new DeluxeEquipment();
 
-        public override void FuelConsumption() => instance.FuelConsumption = 15f;
+        public override void Cost(decimal cost) => instance.Cost = 20000;
+        public override void TopSpeed(int topSpeed) => instance.TopSpeed = 200;
+        public override void FuelConsumption(float fuelConsumption) => instance.FuelConsumption = 15f;       
 
         public override Car GetCar() => instance;
+        public override string ToString()
+        {
+            return instance.ToString();
+        }
     }
 }

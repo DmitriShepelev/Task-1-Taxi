@@ -9,6 +9,8 @@ namespace Taxi.Interfaces
 {
     interface IVehicleFleet
     {
+        ICollection<Car> Cars { get; }
+
         void Add(Car carEntity);
         ICollection<Car> SortByConsumption();
         void ShowFleetToConsole();

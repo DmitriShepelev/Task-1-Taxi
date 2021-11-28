@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Taxi.AutoHouse;
+using Taxi.CarHierarchy;
 using Taxi.Company;
+using Taxi.Interfaces;
 
 namespace Taxi.Menus
 {
     class MainMenu
     {
-        internal static bool Menu(List<PassengerCarBuilder> bestOffers, VehicleFleet vehicleFleet)
+        internal static bool Menu(List<Car> bestOffers, IVehicleFleet vehicleFleet)
         {
             Console.WriteLine("1. Add a car to the fleet");
             Console.WriteLine("2. Display vehicle fleet to console");
@@ -64,7 +66,7 @@ namespace Taxi.Menus
                 return true;
             }
         }
-        private static void ShowCarBySpeedRange(VehicleFleet vehicleFleet)
+        private static void ShowCarBySpeedRange(IVehicleFleet vehicleFleet)
         {
             Console.WriteLine("Enter the start value of the range:");
             int startValue, endValue;
@@ -73,7 +75,7 @@ namespace Taxi.Menus
                 Console.WriteLine("Enter the end value of the range:");
                 if (int.TryParse(Console.ReadLine(), out endValue))
                 {
-                    if (startValue <= endValue && startValue > 0)
+                    if (startValue <= endValue && startValue >= 0)
                     {
                         var resultList = vehicleFleet.FindCarBySpeedRange(startValue, endValue);
                         foreach (var car in resultList)

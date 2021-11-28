@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Taxi.CarHierarchy;
+﻿using Taxi.CarHierarchy;
 using Taxi.CarHierarchy.Components.Body;
 using Taxi.CarHierarchy.Components.Engine;
 using Taxi.CarHierarchy.Components.Equipment;
@@ -13,17 +8,20 @@ namespace Taxi.AutoHouse
 {
     class LadaVestaBuilder : PassengerCarBuilder
     {
-        Car instance = new() { MakeAndModel = "Lada Vesta", KindOfCars = new LightVehicle(), };
+        readonly Car instance = new();
+        public override void MakeAndModel(string makeAndModel) => instance.MakeAndModel = "Lada Vesta";
 
-        public override void ChooseBody() => instance.Body = new Sedan();
+        public override void KindOfCars(KindOfCars kindOfCars) => instance.KindOfCars = new LightVehicle();
 
-        public override void ChooseEngine() => instance.Engine = new GasEngine();
+        public override void ChooseBody(Body body) => instance.Body = new Sedan();
 
-        public override void ChooseEquipment() => instance.Equipment = new BasicEquipment();
+        public override void ChooseEngine(Engine engine) => instance.Engine = new GasEngine();
 
-        public override void SetCost() => instance.Cost = 11000;
-        public override void SetTopSpeed() => instance.TopSpeed = 180;
-        public override void FuelConsumption() => instance.FuelConsumption = 8.5f;
+        public override void ChooseEquipment(Equipment equipment) => instance.Equipment = new BasicEquipment();
+
+        public override void Cost(decimal cost) => instance.Cost = 11000;
+        public override void TopSpeed(int topSpeed) => instance.TopSpeed = 180;
+        public override void FuelConsumption(float fuelConsumption) => instance.FuelConsumption = 8.5f;
 
         public override Car GetCar() => instance;
         public override string ToString()

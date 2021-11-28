@@ -9,8 +9,8 @@ namespace Taxi.Company
 {
     class AccoutingDepartment : IAccoutingDepartment
     {
-        private VehicleFleet vehicleFleet;
-        public AccoutingDepartment(VehicleFleet vehicleFleet)
+        private readonly IVehicleFleet vehicleFleet;
+        public AccoutingDepartment(IVehicleFleet vehicleFleet)
         {
             this.vehicleFleet = vehicleFleet;
         }

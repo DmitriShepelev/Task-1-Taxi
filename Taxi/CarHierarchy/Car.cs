@@ -12,14 +12,15 @@ namespace Taxi.CarHierarchy
 {
     public class Car
     {
+        private KindOfCars kindOfCars;
         private decimal cost;
         private float fuelConsumption;
         private int topSpeed;
 
-        internal decimal Cost
+        public decimal Cost
         {
             get => cost;
-            set
+            internal set
             {
                 if (value < 0)
                 {
@@ -31,10 +32,10 @@ namespace Taxi.CarHierarchy
                 }
             }
         }
-        internal float FuelConsumption
+        public float FuelConsumption
         {
             get => fuelConsumption;
-            set
+            internal set
             {
                 if (value <= 0)
                 {
@@ -46,10 +47,10 @@ namespace Taxi.CarHierarchy
                 }
             }
         }
-        internal int TopSpeed
+        public int TopSpeed
         {
             get => topSpeed;
-            set
+            internal set
             {
                 if (value <= 0 && value > 350)
                 {
@@ -62,11 +63,26 @@ namespace Taxi.CarHierarchy
             }
         }
 
-        internal KindOfCars KindOfCars { get; set; }
-        internal string MakeAndModel { get; set; }
-        internal Body Body { get;  set; }
-        internal Engine Engine { get; set; }
-        internal Equipment Equipment { get; set; }
+        public KindOfCars KindOfCars
+        {
+            get
+            {
+                if (kindOfCars == null)
+                {
+                    throw new ArgumentNullException("KindOfCars is null.");
+                }
+                return kindOfCars;
+            }
+            internal set
+            {
+                kindOfCars = value;
+            }
+        }
+
+        public string MakeAndModel { get; internal set; }
+        public Body Body { get; internal set; }
+        public Engine Engine { get; internal set; }
+        public Equipment Equipment { get; internal set; }
 
         public override string ToString()
         {

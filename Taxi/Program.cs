@@ -7,6 +7,7 @@ using Taxi.CarHierarchy.Components.Engine;
 using Taxi.CarHierarchy.Components.Equipment;
 using Taxi.CarHierarchy.Types;
 using Taxi.Company;
+using Taxi.Interfaces;
 using Taxi.Menus;
 
 namespace Taxi
@@ -15,16 +16,20 @@ namespace Taxi
     {
         static void Main(string[] args)
         {
-            VehicleFleet vehicleFleet = new();
+            IVehicleFleet vehicleFleet = new VehicleFleet();
             Console.WriteLine("Welcome to the Taxi program!\n\nPlease select the first vehicle for your fleet:");
 
-            var bestOffers = new List<PassengerCarBuilder>()
+            var builder = new CarBuilder();
+            var dealer = new AutoHouseDealer(builder, vehicleFleet);
+
+            var bestOffers = new List<Car>
             {
-                new LadaVestaBuilder(),
-                new VolkswagenPassatBuilder(),
-                new MazdaCX7Builder()
+                dealer.ConstructLadaVesta(),
+                dealer.ConstructVolkswagenPassat(),
+                dealer.ConstructMazdaCX7()
             };
-            
+
+
 
             bool menu = true;
             while (menu)
@@ -33,13 +38,16 @@ namespace Taxi
             }
 
             Console.WriteLine("The following options are available to you. ");
-            
+
 
             menu = true;
             while (menu)
             {
                 menu = MainMenu.Menu(bestOffers, vehicleFleet);
             }
+
+
+            Console.WriteLine(dealer.ConstructCar(new GasEngine(), "Kia Rio", 210, 8, new Sedan(), new DeluxeEquipment(), new LightVehicle(), 18000));
         }
     }
 }

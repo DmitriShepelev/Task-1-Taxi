@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Taxi.AutoHouse;
+using Taxi.CarHierarchy;
 using Taxi.Company;
+using Taxi.Interfaces;
 
 namespace Taxi.Menus
 {
     class CarPurchaseMenu
     {
-        internal static bool AddCar(List<PassengerCarBuilder> bestOffers, VehicleFleet vehicleFleet)
+        internal static bool AddCar(List<Car> bestOffers, IVehicleFleet vehicleFleet)
         {
             int positionNumber = 1;
             foreach (var offer in bestOffers)
             {
-                Console.Write($"{positionNumber}. ");
-                AutoHouseDealer dealer = new AutoHouseDealer(offer, vehicleFleet);
-                dealer.ShowCar();
+                Console.Write($"{positionNumber}. "); 
+                Console.WriteLine(offer.MakeAndModel);
                 positionNumber++;
             }
             Console.WriteLine("4. Cancel.");
@@ -27,18 +28,19 @@ namespace Taxi.Menus
 
             if (int.TryParse(Console.ReadLine(), out input) && input > 0 && input < 5)
             {
+                var dealer = new AutoHouseDealer(new CarBuilder(), vehicleFleet);
                 switch (input)
                 {
                     case 1:
-                        new AutoHouseDealer(bestOffers[0], vehicleFleet).SellCar();
+                        dealer.SellCarToFleet(bestOffers[0]);
                         Return();
                         return false;
                     case 2:
-                        new AutoHouseDealer(bestOffers[1], vehicleFleet).SellCar();
+                        dealer.SellCarToFleet(bestOffers[1]);
                         Return();
                         return false;
                     case 3:
-                        new AutoHouseDealer(bestOffers[2], vehicleFleet).SellCar();
+                        dealer.SellCarToFleet(bestOffers[2]);
                         Return();
                         return false;
                     case 4:

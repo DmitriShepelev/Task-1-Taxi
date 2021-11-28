@@ -11,8 +11,8 @@ namespace Taxi.Company
     public class VehicleFleet : IVehicleFleet
     {
         private readonly List<Car> carEntityList = new();
-        internal ICollection<Car> Cars => carEntityList;
-        internal VehicleFleet GetFleet { get => this; }
+
+        ICollection<Car> IVehicleFleet.Cars => carEntityList;
 
         public void Add(Car carEntity)
         {
@@ -21,7 +21,7 @@ namespace Taxi.Company
 
         public ICollection<Car> SortByConsumption()
         {
-            return carEntityList.OrderBy(x => x.FuelConsumption).ToList();
+            return carEntityList.OrderBy(x => x.FuelConsumption).ToArray();
         }
         public void ShowFleetToConsole()
         {
@@ -35,7 +35,7 @@ namespace Taxi.Company
 
         public IEnumerable<Car> FindCarBySpeedRange(int startRange, int endRange)
         {
-            return carEntityList.Where(car => car.TopSpeed >= startRange && car.TopSpeed <= endRange).ToList();
+            return carEntityList.Where(car => car.TopSpeed >= startRange && car.TopSpeed <= endRange).ToArray();
         }
     }
 }

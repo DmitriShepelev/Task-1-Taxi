@@ -1,40 +1,76 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Taxi.CarHierarchy;
-using Taxi.Company;
+using Taxi.CarHierarchy.Components.Engine;
+using Taxi.Interfaces;
+using Taxi.CarHierarchy.Components.Body;
+using Taxi.CarHierarchy.Components.Equipment;
+using Taxi.CarHierarchy.Types;
 
 namespace Taxi.AutoHouse
 {
     internal class AutoHouseDealer
     {
-        private readonly PassengerCarBuilder _builder;
-        private readonly Car carForSale;
-        private readonly VehicleFleet vehicleFleet;
+        private PassengerCarBuilder builder;
+        private readonly IVehicleFleet vehicleFleet;
 
-        public AutoHouseDealer(PassengerCarBuilder builder, VehicleFleet vehicleFleet)
+        public AutoHouseDealer(PassengerCarBuilder builder, IVehicleFleet vehicleFleet)
         {
             this.vehicleFleet = vehicleFleet;
-            _builder = builder;
-            _builder.ChooseEngine();
-            _builder.ChooseBody();
-            _builder.ChooseEquipment();
-            _builder.FuelConsumption();
-            _builder.SetCost();
-            _builder.SetTopSpeed();
-
-            carForSale = _builder.GetCar();
+            this.builder = builder;
         }
-        public void ShowCar()
+        public Car ConstructCar(Engine engine, string makeAndModel, int topSpeed, float fuelConsumption, Body body, Equipment equipment, KindOfCars kindOfCars, decimal cost)
         {
-            Console.WriteLine(carForSale.MakeAndModel);
+            builder = new CarBuilder();
+            builder.KindOfCars(kindOfCars);
+            builder.MakeAndModel(makeAndModel);
+            builder.ChooseBody(body);
+            builder.ChooseEngine(engine);
+            builder.ChooseEquipment(equipment);
+            builder.Cost(cost);
+            builder.FuelConsumption(fuelConsumption);
+            builder.TopSpeed(topSpeed);
+            return builder.GetCar();
         }
 
-        public void SellCar()
+        public Car ConstructLadaVesta()
         {
-            vehicleFleet.Add(carForSale);
+            builder = new CarBuilder();
+            builder.KindOfCars(new LightVehicle());
+            builder.MakeAndModel("Lada Vesta");
+            builder.ChooseBody(new Sedan());
+            builder.ChooseEngine(new GasEngine());
+            builder.ChooseEquipment(new BasicEquipment());
+            builder.Cost(11000);
+            builder.FuelConsumption(8.5f);
+            builder.TopSpeed(180);
+            return builder.GetCar();
         }
+        public Car ConstructMazdaCX7()
+        {
+            builder = new CarBuilder();
+            builder.KindOfCars(new LightVehicle());
+            builder.MakeAndModel("Mazda CX-7");
+            builder.ChooseBody(new Crossover());
+            builder.ChooseEngine(new GasEngine());
+            builder.ChooseEquipment(new DeluxeEquipment());
+            builder.Cost(20000);
+            builder.FuelConsumption(15f);
+            builder.TopSpeed(200);
+            return builder.GetCar();
+        }
+        public Car ConstructVolkswagenPassat()
+        {
+            builder = new CarBuilder();
+            builder.KindOfCars(new LightVehicle());
+            builder.MakeAndModel("Volkswagen Passat");
+            builder.ChooseBody(new StationWagon());
+            builder.ChooseEngine(new DiselEngine());
+            builder.ChooseEquipment(new MediumEquipment());
+            builder.Cost(15000);
+            builder.FuelConsumption(6.5f);
+            builder.TopSpeed(190);
+            return builder.GetCar();
+        }
+        public void SellCarToFleet(Car car) => vehicleFleet.Add(car);
     }
 }
