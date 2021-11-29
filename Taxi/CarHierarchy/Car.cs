@@ -20,7 +20,11 @@ namespace Taxi.CarHierarchy
         private decimal cost;
         private float fuelConsumption;
         private int topSpeed;
-        private Body body1;
+
+        /// <summary>
+        /// Property that returns the price of a vehicle
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when cost is less than zero.</exception>
 
         public decimal Cost
         {
@@ -37,6 +41,11 @@ namespace Taxi.CarHierarchy
                 }
             }
         }
+
+        /// <summary>
+        /// Property that returns the fuel consumption of a vehicle
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when fuel consumption  equal or less than zero.</exception>
         public float FuelConsumption
         {
             get => fuelConsumption;
@@ -44,7 +53,7 @@ namespace Taxi.CarHierarchy
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentException("Fuel consumption cannot be equal to or less than zero.");
+                    throw new ArgumentException("Fuel consumption cannot be equal or less than zero.");
                 }
                 else
                 {
@@ -52,6 +61,11 @@ namespace Taxi.CarHierarchy
                 }
             }
         }
+
+        /// <summary>
+        /// Property that returns the maximum vehicle speed
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when speed equal zero or exceed 350 km/h.</exception>
         public int TopSpeed
         {
             get => topSpeed;

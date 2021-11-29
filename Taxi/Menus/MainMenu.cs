@@ -32,21 +32,29 @@ namespace Taxi.Menus
                         return true;
                     case 2:
                         Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         vehicleFleet.ShowFleetToConsole();
+                        Console.ResetColor();
                         DelayAndReturn();
                         return true;
                     case 3:
                         var accountant = new AccoutingDepartment(vehicleFleet);
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.WriteLine($"\nTotal cost of the vehicle fleet = {accountant.GetTotalCostOfFleet()}$\n");
+                        Console.ResetColor();
                         DelayAndReturn();
                         return true;
                     case 4:
                         var orderedFleet = vehicleFleet.SortByConsumption();
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.Write("Sorting by fuel consumption = \t");
                         foreach (var car in orderedFleet)
                         {
                             Console.Write($"{car.FuelConsumption} ");
                         }
+                        Console.WriteLine();
+                        Console.ResetColor();
                         DelayAndReturn();
                         return true;
                     case 5:
@@ -61,7 +69,9 @@ namespace Taxi.Menus
             }
             else
             {
-                Console.WriteLine("\nInvalid input. try again\n");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nInvalid input. Try again\n");
+                Console.ResetColor();
                 Menu(bestOffers, vehicleFleet);
                 return true;
             }
@@ -78,10 +88,17 @@ namespace Taxi.Menus
                     if (startValue <= endValue && startValue >= 0)
                     {
                         var resultList = vehicleFleet.FindCarBySpeedRange(startValue, endValue);
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        int positionNumber = 1;
                         foreach (var car in resultList)
                         {
-                            Console.WriteLine(car);
+                            Console.Write($"{positionNumber}. ");
+                            Console.WriteLine(car.MakeAndModel + "\t Top speed = " + car.TopSpeed);
+                            positionNumber++;
                         }
+                        Console.WriteLine();
+                        Console.ResetColor();
                     }
                     else
                     {
@@ -100,7 +117,7 @@ namespace Taxi.Menus
 
         private static void DelayAndReturn()
         {
-            Console.WriteLine("\nPress any key to return to the menu");
+            Console.WriteLine("\nPress any key to return to the menu...");
             Console.ReadKey();
             Console.Clear();
         }

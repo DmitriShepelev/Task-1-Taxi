@@ -50,7 +50,9 @@ namespace Taxi.Menus
             }
             else
             {
-                Console.WriteLine("\nInvalid input. try again\n");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nInvalid input. Try again\n");
+                Console.ResetColor();
                 AddCar(bestOffers, vehicleFleet);
                 return true;
             }
@@ -62,7 +64,7 @@ namespace Taxi.Menus
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($"\nVehicle added successfully\n");
             Console.ResetColor();
-            Console.WriteLine("Press any key to return to the menu");
+            Console.WriteLine("Press any key to return to the menu...");
             Console.ReadKey();
             Console.Clear();
         }
